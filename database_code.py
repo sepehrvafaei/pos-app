@@ -88,10 +88,10 @@ def removeStaff(ID):
     curObj.execute("DELETE FROM staffData WHERE staffID=?",(ID,))
     con.commit()
     con.close()
-def removeCostumer(email):
+def removeCostumer(ID):
     con=sqlite3.connect('pos_database.db')
     curObj=con.cursor()
-    curObj.execute("DELETE FROM costumerData WHERE email=?",(email,))
+    curObj.execute("DELETE FROM costumerData WHERE costumerID=?",(ID,))
     con.commit()
     con.close()
 
@@ -112,8 +112,14 @@ def updateProduct(entities):
     con.commit()
     con.close()
     
-def updateCostumer():
-    pass
+def updateCostumer(entities):
+    con=sqlite3.connect('pos_database.db')
+    curObj=con.cursor()
+    curObj.execute("""UPDATE costumerData SET
+        first_name=?,last_name=?, email=?,phone_number=?,city=?
+        WHERE costumerID=?""",entities)
+    con.commit()
+    con.close()
 
 def updateSupplier(entities):
     con=sqlite3.connect('pos_database.db')

@@ -5,15 +5,17 @@ from kivy.uix.button import Button
 from kivy.graphics import Rectangle, Color
 import database_code
 import sqlite3
-import password
+import json
 
 
 class SigninWindow(Screen):
     
     def validate(self):
-        if self.ids.pwd.text==password.password:
+        with open('password.json') as f:
+            data=json.load(f)
+        if self.ids.pwd.text==data['password']:
             self.manager.current="home"
         else:
-            self.ids.info.text="Invalid username or password."
+            self.ids.info.text="Invalid password."
             
 

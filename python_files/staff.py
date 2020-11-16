@@ -29,21 +29,21 @@ class StaffWindow(Screen):
         self.ids.staff_table.add_widget(b)
 
     def delete_staff(self):
-        if self.ids.clientID.text!=None:
-            database_code.removeStaff(int(self.ids.clientID.text))
+        if self.ids.satffID.text!=None:
+            database_code.removeStaff(int(self.ids.staffID.text))
             for row in self.ids.staff_table.children:
-                if row.chilren[9].text==int(self.ids.clientID.text):
+                if row.chilren[9].text==int(self.ids.staffID.text):
                     self.ids.staff_table.remove_widget(row)
         else:return
 
     def update_satff(self):
-        entities=(int(self.ids.clientID.text),self.ids.name_f.text,self.ids.name_l.text,
+        entities=(int(self.ids.satffID.text),self.ids.name_f.text,self.ids.name_l.text,
                   self.ids.email.text,self.ids.phone.text,self.ids.address.text,
                   self.ids.city.text,self.ids.birth.text,self.ids.gender.text,self.ids.postal.text)
         L=entities[::-1]
-        if self.ids.clientID.text!=None:
+        if self.ids.staffID.text!=None:
             for row in self.ids.staff_table.children:
-                if row.chilren[9].text==int(self.ids.clientID.text):
+                if row.chilren[9].text==int(self.ids.staffID.text):
                     for i in range(10):
                         row.children[i]=L[i]
         else:return

@@ -28,7 +28,7 @@ class DataWindow(Screen):
                                 productData.productID=salesData.productID", con)
         df=df.groupby('ProductID',as_index=False).sum()
         df=df.sort_values(by='quantity',ascending=False)
-        df=df.head(2)
+        df=df.head(10)
         df=df.astype({'ProductID':'str'})
         plt.bar(df['ProductID'],df['quantity'])
         plt.xlabel('products')

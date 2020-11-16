@@ -1,6 +1,5 @@
 <CostumerWindow>:
     name:"costumer"
-    costumer_table:costumer_table
     BoxLayout:
         orinetation:"horizontal"
         size_hint:(1,None)
@@ -171,7 +170,7 @@
         size_hint:1,.1
         pos_hint:{'buttom':1}
         Button:
-            text:"customers"
+            text:"costumers"
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
@@ -183,14 +182,14 @@
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
-            on_release:root.show_customer()
+            on_release:root.show_costumer()
         Button:
             text:"add"
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
-            on_release:root.add_customer()
+            on_release:root.add_costumer()
                             
         Button:
             text:"remove"
@@ -198,10 +197,11 @@
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
-            on_release:root.delete_customer()
+            on_release:root.delete_costumer()
         Button:
             text:"update"
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
+            on_release:root.update_costumer()

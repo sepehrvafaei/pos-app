@@ -1,6 +1,12 @@
 from kivy.uix.screenmanager import Screen
-import password
+import json
 class SignupWindow(Screen):
     def change_password(self):
-        if self.ids.old_password==password.password:
-            password.password=self.ids.password
+        r=open('password.json','r')
+        data=json.load(r)
+        r.close()
+        if self.ids.old_password==data['password']:
+            data['password']=self.ids.password
+            w=open('password.json','w')
+            json.dump(data,w)
+            w.close()
