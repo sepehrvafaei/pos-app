@@ -1,0 +1,170 @@
+<StaffWindow>:
+    name:"staff"
+    BoxLayout:
+        orinetation:"horizontal"
+        size_hint:(1,None)
+        height:40
+        pos_hint:{'top':1}
+        Button:
+            text:"home"
+            size_hint:.2,1
+            pos_hint:{'x':.2}
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.manager.current="home"
+        Button:
+            text:"exit"
+            size_hint:.2,1
+            pos_hint:{'x':.4}
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:app.get_running_app().stop()
+        Label:
+            canvas.before:
+                Color:
+                    rgba:.1,.1,.8,1
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+            id:current_user
+            text:"sepehr"
+            size_hint:.2,1
+            pos_hint:{'x':.6}
+            font_size:'20sp'
+            italic:True
+            bold:True
+    
+    ScrollView:
+        do_scroll_y:True
+        do_scroll_x:True
+        bar_width:20
+        size_hint:1,.5
+        pos_hint:{'top':.9}
+        BoxLayout:
+            orientation:"vertical"
+            pos_hint:{'top':1,'left':1}
+            size_hint:(None,None)
+            width:1200
+            height: self.minimum_height
+            BoxLayout:
+                size_hint:(None,None)
+                height:40
+                width:1200
+                canvas.before:
+                    Color:
+                        rgba:.3,.5,.1,1
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                Label:
+                    text:"ID"
+                    width:120
+                Label:
+                    text:"first name"
+                    width:120
+                Label:
+                    text:"last name"
+                    width:120
+                Label:
+                    text:"email"
+                    width:120
+                Label:
+                    text:"phone number"
+                    width:120
+                Label:
+                    text:"address"
+                    width:120
+                Label:
+                    text:"city"
+                    width:120
+                Label:
+                    text:"birth day"
+                    width:120
+                Label:
+                    text:"gender"
+                    width:120
+                Label:
+                    text:"postal code"
+                    width:120
+                    
+            GridLayout:
+                id:staff_table
+                size_hint:(None,None)
+                height: self.minimum_height
+                width:1200
+                cols:1
+    GridLayout:
+        row:2
+        cols:5
+        size_hint:1,.15
+        spacing:2
+        pos_hint:{'y':.15}
+        TextInput:
+            id:clientID
+            hint_text:"client id"
+        TextInput:
+            id:name_f
+            hint_text:" first name"
+        TextInput:
+            id:name_l
+            hint_text:"last name"
+        TextInput:
+            id:email
+            hint_text:"email address"
+        TextInput:
+            id:phone
+            hint_text:"phone number"
+        TextInput:
+            id:address
+            hint_text:"address"
+        TextInput:
+            id:city
+            hint_text:"city"
+        TextInput:
+            id:birth
+            hint_text:"birth"
+        TextInput:
+            id:gender
+            hint_text:"gender"
+        TextInput:
+            id:postal
+            hint_text:"postal code"
+    GridLayout:
+        id:options
+        cols:6
+        rows:1
+        size_hint:1,.1
+        pos_hint:{'buttom':1}
+        Button:
+            text:"staff"
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.show_all()
+        Button:
+            text:"add"
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.add_staff()
+                            
+        Button:
+            text:"remove"
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.delete_staff()
+        Button:
+            text:"update"
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.update_staff()

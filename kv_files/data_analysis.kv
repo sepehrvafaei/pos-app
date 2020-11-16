@@ -1,0 +1,31 @@
+<DataWindow>:
+    name:"data"
+    BoxLayout:
+        orinetation:"horizontal"
+        size_hint:(1,None)
+        height:30
+        pos_hint:{'top':1}
+        Button:
+            text:"Home"
+            size_hint:.2,1
+            pos_hint:{'x':.2}
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.manager.current="home"
+        Button:
+            text:"10 Most Saled Products"
+            size_hint:.2,1
+            pos_hint:{'x':.2}
+            background_normal:''
+            background_color:(.2,.5,.1,1)
+            font_size:'20sp'
+            italic:True
+            on_release:root.show()
+    BoxLayout:
+        id:graph
+        size_hint:(1,.9)
+        pos_hint:{'top':.9}
+        background_normal:''
+        background_color:(.5,.5,.5,1)

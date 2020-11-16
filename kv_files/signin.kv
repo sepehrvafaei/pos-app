@@ -1,0 +1,41 @@
+<SigninWindow>:
+    name:"signin"
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: .2,.5,.2, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        size_hint_y:None
+        height:50
+        pos_hint:{'top':1}
+        Label:
+            text:"Access Control"
+            size_hint_x:.9
+            bold:True
+        Button:
+            text:"x"
+            size_hint_x:.1
+            on_release:app.get_running_app().stop()
+    BoxLayout:
+        orientation:"vertical"
+        pos_hint:{'center_x':.5,'y':.5}
+        size_hint:.4,.4
+        spacing:10
+        Label:
+            id:info
+            text:""
+        TextInput:
+            id:pwd
+            hint_text:"Password"
+            multiline:False
+            password:True
+            focus:True
+            on_text_validate:root.validate()
+        Button:
+            text:"Sign In"
+            on_release:root.validate()
+        Button:
+            text:"Sign Up"
+            on_release:root.manager.current="signup"

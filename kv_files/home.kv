@@ -1,0 +1,38 @@
+<HomeWindow>:
+    name:"home"
+    BoxLayout:
+        orientation:'vertical'
+        GridLayout:
+            rows:4
+            cols:2
+            pos_hint:{'top':1}
+            Button:
+                text:"Payment"
+                on_release:root.manager.current="payment"
+                font_size:25
+            Button:
+                text:"Costumer Management"
+                on_release:root.manager.current="costumer"
+                font_size:25
+            Button:
+                text:"Staff Management"
+                on_release:root.manager.current="staff"
+                font_size:25
+            Button:
+                text:"Inventory Management"
+                on_release:root.manager.current="inventory"
+                font_size:25
+            Button:
+                text:"Sales Management"
+                on_release:root.manager.current="sales"
+                font_size:25
+            Button:
+                text:"Data Analysis"
+                on_release:root.manager.current="data"
+                font_size:25
+        Button:
+            size_hint:(0.5,.25)
+            pos_hint:{'center_x':0.5}
+            text:"Exit"
+            on_release:app.get_running_app().stop()
+            font_size:30
