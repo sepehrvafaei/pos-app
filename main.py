@@ -35,6 +35,7 @@ Builder.load_file("kv_files/sales.kv")
 Builder.load_file("kv_files/inventory.kv")
 Builder.load_file("kv_files/data_analysis.kv")
 
+
 SM=ScreenManager()
 SM.add_widget(signin.SigninWindow())
 SM.add_widget(signup.SignupWindow())

@@ -2,17 +2,22 @@
     name:"sales"
     sales_table:sales_table
     BoxLayout:
-        spacing:5
+        spacing:2
         size_hint:1,.1
         pos_hint:{'top':1}
+        TextInput:
+            id:entry
+            hint_text:'sale ID'
+            size_hint_x:.3
         Button:
-            text:"navigate"
+            text:"search"
             size_hint:.2,1
             pos_hint:{'left':1}
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:20
             italic:True
+            on_release:root.show_sale()
         Button:
             text:"home"
             size_hint:.2,1
@@ -60,18 +65,23 @@
             BoxLayout:
                 size_hint:(1,None)
                 height:40
+                spacing:2
                 canvas.before:
                     Color:
-                        rgba:.3,.5,.1,1
+                        rgba:.8,.1,.8,1
                     Rectangle:
                         pos:self.pos
                         size:self.size
                 Label:
-                    text:'saleID'
+                    text:'sale ID'
                 Label:
-                    text:"productID"
+                    text:"product ID"
                 Label:
-                    text:"staffID"
+                    text:'quantity'
+                Label:
+                    text:"unit value"
+                Label:
+                    text:"staff ID"
                 Label:
                     text:"costumerID"
                 Label:
@@ -83,18 +93,30 @@
                 height: self.minimum_height
     BoxLayout:
         size_hint:1,.1
-        pos_hint:{'buttom':1}
-        Button:
-            text:"sales"
-            background_normal:''
-            background_color:(.2,.5,.1,1)
-            font_size:'20sp'
-            italic:True
-            on_release:root.show_all()
-        Button:
-            text:"search"
-            background_normal:''
-            background_color:(.2,.5,.1,1)
-            font_size:'20sp'
-            italic:True
-            on_release:root.show_sale()
+        pos_hint:{'bottom':1}
+        id:sale_alone
+        spacing:2
+        canvas.before:
+            Color:
+                rgba:.8,.1,.8,1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        Label:
+            size_hint_x:.15
+            text:""
+        Label:
+            size_hint_x:.15
+            text:''
+        Label:
+            text:""
+            size_hint_x:.15
+        Label:
+            text:""
+            size_hint_x:.15
+        Label:
+            text:""
+            size_hint_x:.15
+        Label:
+            text:""
+            size_hint_x:.25

@@ -3,7 +3,7 @@ import sqlite3
 def creatDataBase():
     con=sqlite3.connect('pos_database.db')
     curObj=con.cursor()
-    curObj.execute("CREATE TABLE IF NOT EXISTS supplierData(supplierID INTEGER PRIMARY KEY AUTOINCREMENT,\
+    curObj.execute("CREATE TABLE IF NOT EXISTS supplierData(supplierID INTEGER PRIMARY KEY,\
         name TEXT NOT NULL,address TEXT)")
     con.commit()
     curObj.execute("CREATE TABLE IF NOT EXISTS productData(ProductID INTEGER PRIMARY KEY,\
@@ -11,16 +11,16 @@ def creatDataBase():
             stock_value REAL,supplierID INTEGER NOT NULL,\
         FOREIGN KEY(supplierID) REFERENCES supplierData(supplierID))")
     con.commit()
-    curObj.execute("CREATE TABLE IF NOT EXISTS staffData(staffID INTEGER PRIMARY KEY AUTOINCREMENT,\
+    curObj.execute("CREATE TABLE IF NOT EXISTS staffData(staffID INTEGER PRIMARY KEY,\
         first_name TEXT NOT NULL,last_name TEXT NOT NULL,\
         email TEXT UNIQUE NOT NULL ,phone_number TEXT NOT NULL,address TEXT NOT NULL,\
         city TEXT NOT NULL,birth_date TEXT NOT NULL,gender TEXT,postal_code TEXT NOT NULL)")
     con.commit()
-    curObj.execute("CREATE TABLE IF NOT EXISTS costumerData(costumerID INTEGER PRIMARY KEY AUTOINCREMENT,\
+    curObj.execute("CREATE TABLE IF NOT EXISTS costumerData(costumerID INTEGER PRIMARY KEY,\
         first_name TEXT NOT NULL,last_name TEXT NOT NULL,\
         email TEXT,phone_number TEXT,city TEXT)")
     con.commit()
-    curObj.execute("CREATE TABLE IF NOT EXISTS salesData(saleID INTEGER PRIMARY KEY AUTOINCREMENT,\
+    curObj.execute("CREATE TABLE IF NOT EXISTS salesData(saleID INTEGER PRIMARY KEY,\
         productID INTEGER NOT NULL REFERENCES productData(productID),\
         quantity INTEGER NOT NULL, total INTIGER NOT NULL,\
         staffID INTEGER NOT NULL, costumerID INTEGER NOT NULL,date TEXT NOT NULL)")

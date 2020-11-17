@@ -15,6 +15,10 @@ import database_code
 import sqlite3
 
 class StaffWindow(Screen):
+
+    def __init__(self):
+        super().__init__()
+        self.show_all()
     
     def add_staff(self):
         entities=(None,self.ids.name_f.text,self.ids.name_l.text,
@@ -61,5 +65,4 @@ class StaffWindow(Screen):
                 l=Button(text=str(col),text_size=(120,None),halign='center',valign='center')
                 b.add_widget(l)
             self.ids.staff_table.add_widget(b)
-        self.ids.options.children[3].disabled=True
 

@@ -23,16 +23,18 @@ from kivy.garden.matplotlib import FigureCanvasKivyAgg
 
 class DataWindow(Screen):
     def show(self):
+        if self.ids.entry.text==None:return
+        if len(self.ids.graph.children)!=0:self.ids.graph.clear_widgets()
         con=sqlite3.connect('pos_database.db')
         df = pd.read_sql_query("SELECT productData.productID, quantity from salesData INNER JOIN productData ON \
                                 productData.productID=salesData.productID", con)
         df=df.groupby('ProductID',as_index=False).sum()
         df=df.sort_values(by='quantity',ascending=False)
-        df=df.head(10)
+        df=df.head(int(self.ids.entry.text))
         df=df.astype({'ProductID':'str'})
         plt.bar(df['ProductID'],df['quantity'])
         plt.xlabel('products')
-        plt.ylabel('sales')
+        plt.ylabel('sales count')
         plt.title('10 most saled products')
         self.ids.graph.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         

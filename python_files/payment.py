@@ -51,8 +51,13 @@ class PaymentWindow(Screen):
     
     def confirm(self):
         for i in self.items.values():
-            database_code.updateProductQ([
-                i[2], i[3], i[1]
-            ])
+            database_code.updateProductQ([i[2], i[3], i[1]])
             database_code.addSales(i)
-            
+        for i in self.items.values():
+            pass
+    
+    def cancel(self):
+        self.ids.pay_table.clear_widgets()
+        self.ids.subtotal.text=''
+        self.ids.total.text=None
+        self.ids.discount.text=None

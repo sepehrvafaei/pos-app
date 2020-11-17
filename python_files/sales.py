@@ -16,6 +16,10 @@ import sqlite3
 from datetime import datetime
 
 class SalesWindow(Screen):
+    def __init__(self):
+        super().__init__()
+        self.show_all()
+    
     def show_all(self):
         con=sqlite3.connect('pos_database.db')
         curObj=con.cursor()
@@ -32,4 +36,17 @@ class SalesWindow(Screen):
             self.ids.sales_table.add_widget(b)
 
     def show_sale(self):
-        pass
+        con=sqlite3.connect('pos_database.db')
+        curObj=con.cursor()
+        curObj.execute("SELECT * FROM salesData WHERE saleID=?",(int(self.ids.entry.text),))
+        con.commit()
+        rows=curObj.fetchall()
+        con.close()
+        sale=rows[0][::-1]
+        if len(rows)==0:return
+        i=0
+        for col in self.ids.sale_alone.children:
+            col.text=str(sale[i])
+            i+=1
+            
+

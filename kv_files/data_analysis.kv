@@ -7,22 +7,23 @@
         pos_hint:{'top':1}
         Button:
             text:"Home"
-            size_hint:.2,1
-            pos_hint:{'x':.2}
+            size_hint:.1,1
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
             on_release:root.manager.current="home"
         Button:
-            text:"10 Most Saled Products"
-            size_hint:.2,1
-            pos_hint:{'x':.2}
+            text:"Most Saled Products"
+            size_hint:.8,1
             background_normal:''
             background_color:(.2,.5,.1,1)
             font_size:'20sp'
             italic:True
             on_release:root.show()
+        TextInput:
+            id:entry
+            size_hint:.1,1
     BoxLayout:
         id:graph
         size_hint:(1,.9)

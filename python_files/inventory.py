@@ -25,6 +25,10 @@ class InventoryWindow(Screen):
     qty=ObjectProperty(None)
     u_value=ObjectProperty(None)
     s_ID=ObjectProperty(None)
+    def __init__(self):
+        super().__init__()
+        self.show_all_p()
+        self.show_all_s()
         
     def add_product(self):
         entities=(int(self.p_ID.text),self.name_.text,self.brand.text,
@@ -68,7 +72,6 @@ class InventoryWindow(Screen):
                 l=Button(text=str(col))
                 b.add_widget(l)
             self.ids.product_table.add_widget(b)
-        self.ids.options.children[4].disabled=True
     
     def update_product(self):
         entities=(self.name_.text,self.brand.text,
@@ -76,7 +79,10 @@ class InventoryWindow(Screen):
                   (float(self.u_value.text)*int(self.qty.text)),
                   int(self.s_ID.text),int(self.p_ID.text))
         database_code.updateProduct(entities)
-        
+        for row in self.ids.product_table.children:
+            if row.children[6].text==self.p_ID.text:
+                pass
+
     def add_supplier(self):
         entities=(None,self.ids.sup_name.text,self.ids.sup_address.text)
         if None in entities[1:]:return
@@ -105,7 +111,6 @@ class InventoryWindow(Screen):
                 l=Button(text=str(col),text_size=(300,None),halign='center',valign='center')
                 b.add_widget(l)
             self.ids.supplier_table.add_widget(b)
-        self.ids.options2.children[3].disabled=True
         
     def update_supplier(self):
         entities=(self.ids.sup_name.text,self.ids.sup_address.text,self.ids.sup_ID)
