@@ -50,14 +50,14 @@ class PaymentWindow(Screen):
         self.ids.total.text=str((float(self.ids.subtotal.text)*(1-float(self.ids.discount.text)))*(1+float(self.ids.tax.text)))
     
     def confirm(self):
-        for i in self.items.values():
-            database_code.updateProductQ([i[2], i[3], i[1]])
-            database_code.addSales(i)
-        for i in self.items.values():
-            pass
+        for key in self.items.keys():
+            database_code.updateProductQ((self.items[key][2], self.items[key][3], self.items[key][1]))
+            id=database_code.addSales(self.items[key])
+            self.items[key][0]=id
+        self.cancel()
     
     def cancel(self):
         self.ids.pay_table.clear_widgets()
         self.ids.subtotal.text=''
-        self.ids.total.text=None
-        self.ids.discount.text=None
+        self.ids.total.text=''
+        self.ids.discount.text=''

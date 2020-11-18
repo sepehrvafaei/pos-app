@@ -48,5 +48,23 @@ class SalesWindow(Screen):
         for col in self.ids.sale_alone.children:
             col.text=str(sale[i])
             i+=1
+    def refresh(self):
+        con=sqlite3.connect('pos_database.db')
+        curObj=con.cursor()
+        curObj.execute("SELECT * FROM salesData")
+        con.commit()
+        rows=curObj.fetchall()
+        con.close()
+        if len(rows)==0:return
+        x=len(rows)
+        y=len(self.ids.sales_table.children)
+        if x==y:return
+        rows=rows[y:]
+        for row in rows:
+            b=BoxLayout(size_hint=(None,None),height=30,width=1000)
+            for col in row:
+                l=Button(text=str(col))
+                b.add_widget(l)
+            self.ids.sales_table.add_widget(b)
             
 

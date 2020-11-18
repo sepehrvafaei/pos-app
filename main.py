@@ -35,7 +35,6 @@ Builder.load_file("kv_files/sales.kv")
 Builder.load_file("kv_files/inventory.kv")
 Builder.load_file("kv_files/data_analysis.kv")
 
-
 SM=ScreenManager()
 SM.add_widget(signin.SigninWindow())
 SM.add_widget(signup.SignupWindow())
@@ -46,6 +45,7 @@ SM.add_widget(payment.PaymentWindow())
 SM.add_widget(sales.SalesWindow())
 SM.add_widget(inventory.InventoryWindow())
 SM.add_widget(data_analysis.DataWindow())
+
 
 class MainApp(App):
     def build(self):
