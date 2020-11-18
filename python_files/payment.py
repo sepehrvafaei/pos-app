@@ -45,9 +45,13 @@ class PaymentWindow(Screen):
         b.add_widget(L2)
         b.add_widget(L3)
         self.ids.pay_table.add_widget(b)
-        new_subtotal=str(float(self.ids.subtotal.text)+rows[0][3])
+        if self.ids.subtotal.text=='':self.ids.subtotal.text='0'
+        new_subtotal=format(float(self.ids.subtotal.text)+rows[0][3],'.2f')
         self.ids.subtotal.text=new_subtotal
-        self.ids.total.text=str((float(self.ids.subtotal.text)*(1-float(self.ids.discount.text)))*(1+float(self.ids.tax.text)))
+        self.ids.total.text=format(
+            (float(new_subtotal)*
+            (1-float(self.ids.discount.text)))*
+            (1+float(self.ids.tax.text)),'.2f')
     
     def confirm(self):
         for key in self.items.keys():
@@ -55,7 +59,7 @@ class PaymentWindow(Screen):
             id=database_code.addSales(self.items[key])
             self.items[key][0]=id
         self.cancel()
-    
+
     def cancel(self):
         self.ids.pay_table.clear_widgets()
         self.ids.subtotal.text=''

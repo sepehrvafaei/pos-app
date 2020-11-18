@@ -59,20 +59,15 @@
                     font_size:'20sp'
                     italic:True
                     on_release:app.get_running_app().stop()
-                Label:
-                    canvas.before:
-                        Color:
-                            rgba:0,.1,.9,1
-                        Rectangle:
-                            pos:self.pos
-                            size:self.size
-                    id:current_user
-                    text:"sepehr"
+                Button:
+                    text:"refresh"
                     size_hint:.2,1
-                    pos_hint:{'x':.6}
+                    pos_hint:{'right':1}
+                    background_normal:''
+                    background_color:(.2,.5,.1,1)
                     font_size:'20sp'
                     italic:True
-                    bold:True
+                    on_release:root.refresh()
             ScreenManager:
                 id:screen_manager
                 Screen:

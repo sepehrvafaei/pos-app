@@ -70,12 +70,13 @@ class CostumerWindow(Screen):
                   self.ids.city.text,int(self.ids.clientID.text))
         database_code.updateCostumer(entities)
         if len(self.ids.costumer_table.children)==0:return
-        entities=(self.ids.clientID,self.ids.name_f.text,
+        entities=(self.ids.clientID.text,self.ids.name_f.text,
                 self.ids.name_l.text,self.ids.email.text,
                 self.ids.phone.text,self.ids.city.text)
+        entities=entities[::-1]
         if self.ids.clientID.text!=None:
             for row in self.ids.costumer_table.children:
-                if row.children[5].text==int(self.ids.clientID.text):
+                if int(row.children[5].text)==int(self.ids.clientID.text):
                     for i in range(6):
-                        row.children[i]=entities[i-6]
+                        row.children[i].text=entities[i]
         else:return

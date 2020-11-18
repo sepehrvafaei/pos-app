@@ -79,18 +79,39 @@ class InventoryWindow(Screen):
                   (float(self.u_value.text)*int(self.qty.text)),
                   int(self.s_ID.text),int(self.p_ID.text))
         database_code.updateProduct(entities)
+        entities=(int(self.p_ID.text),self.name_.text,self.brand.text,
+                  float(self.u_value.text),int(self.qty.text),
+                  (float(self.u_value.text)*int(self.qty.text)),
+                  int(self.s_ID.text))
+        entities=entities[::-1]
         for row in self.ids.product_table.children:
             if row.children[6].text==self.p_ID.text:
-                pass
+                for i in range(6):
+                    row.children[i].text=str(entities[i])
+    
+    def refresh(self):
+        con=sqlite3.connect('pos_database.db')
+        curObj=con.cursor()
+        curObj.execute("SELECT * FROM productData")
+        rows=curObj.fetchall()
+        con.close()
+        self.ids.product_table.clear_widgets()
+        for row in rows:
+            b=BoxLayout(size_hint=(1,None),height=30)
+            for col in row:
+                l=Button(text=str(col))
+                b.add_widget(l)
+            self.ids.product_table.add_widget(b)
 
     def add_supplier(self):
         entities=(None,self.ids.sup_name.text,self.ids.sup_address.text)
         if None in entities[1:]:return
-        database_code.addSupplier(entities)
+        id=database_code.addSupplier(entities)
         b=BoxLayout(size_hint=(1,None),height=40)
         for col in entities:
                 l=Button(text=str(col),text_size=(300,None),halign='center',valign='center')
                 b.add_widget(l)
+        b.children[2].text=str(id)
         self.ids.supplier_table.add_widget(b)
         
     def remove_supplier(self):
