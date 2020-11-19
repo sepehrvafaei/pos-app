@@ -35,7 +35,7 @@ class DataWindow(Screen):
         plt.bar(df['ProductID'],df['quantity'])
         plt.xlabel('products')
         plt.ylabel('sales count')
-        plt.title('10 most saled products')
+        plt.title(self.ids.entry.text+'most saled products')
         self.ids.graph.add_widget(FigureCanvasKivyAgg(plt.gcf()))
         
         
